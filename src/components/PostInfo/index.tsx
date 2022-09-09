@@ -1,5 +1,9 @@
 import React from 'react';
 import { FaAngleLeft, FaCalendarDay, FaComment, FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { Issue } from '../../@types';
+import ptBR from 'date-fns/locale/pt-BR';
+import { formatDistanceToNow } from 'date-fns'
 import {
   PostInfoContainer,
   PostInfoHeader,
@@ -7,25 +11,37 @@ import {
   PostInfoContent,
 } from './styles';
 
-
-const PostInfo: React.FC = () => {
+interface PostInfoProps{
+  issue: Issue
+}
+const PostInfo: React.FC<PostInfoProps> = ({issue}) => {
   return (
     <PostInfoContainer>
       <PostInfoHeader>
-        <a href="">
+        <Link to={'/'}>
           <FaAngleLeft /> Voltar
-        </a>
-        <a href="">
+        </Link>
+        <a href={`${issue.html_url}`}>
           Ver no GitHub
           <FaExternalLinkAlt />
         </a>
       </PostInfoHeader>
       <PostInfoContent>
-        <strong>JavaScript data types and data structures</strong>
+        <strong>{issue.title}</strong>
         <PostInfoFooter>
-          <a href="#"><FaGithub/> mtheusbrito</a> 
-          <a href="#"><FaCalendarDay/>Há 1 dia</a>
-          <a href="#"><FaComment/>5 comentários</a>
+          <span>
+            <FaGithub /> {issue.user.login}
+          </span>
+          <span>
+            <FaCalendarDay />
+            {formatDistanceToNow(new Date(issue.created_at), {
+              addSuffix: true,
+              locale: ptBR
+            })}
+          </span>
+          <span>
+            <FaComment />{issue.comments} {issue.comments === 1 ? 'comentário': 'comentários'}
+          </span>
         </PostInfoFooter>
       </PostInfoContent>
     </PostInfoContainer>

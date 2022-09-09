@@ -39,6 +39,7 @@ export const Header = styled.div`
   }
 `;
 export const Content = styled.div`
+width: 100%;
   display: flex;
   flex-direction: column;
 
@@ -50,9 +51,8 @@ export const Footer = styled.div`
   margin-top: auto;
   display: flex;
   gap: 1.5rem;
-  a {
+  span {
     font-size: 1rem;
-    text-decoration: none;
     gap: 0.5rem;
     display: flex;
     align-items: center;

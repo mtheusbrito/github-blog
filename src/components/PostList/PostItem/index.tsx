@@ -1,29 +1,49 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown'
 import { PostItemContainer, PostItemHeader } from '../styles';
+interface Issue {
+  active_lock_reason: string;
+  assignee: string;
+  author_association: string;
+  body: string;
+  closed_at: string;
+  comments: number;
+  comments_url: string;
+  created_at: string;
+  events_url: string;
+  html_url: string;
+  id: number;
+  labels_url: string;
+  locked: boolean;
+  milestone: string;
+  node_id: string;
+  number: number;
+  performed_via_github_app: string;
+  repository_url: string;
+  score: number;
+  state: string;
+  state_reason: string;
+  timeline_url: string;
+  title: string;
+  updated_at: string;
+  url: string;
+}
+interface PostItemProps {
+  issue: Issue;
+}
 
-
-
-const PostItem: React.FC = () => {
+const PostItem: React.FC<PostItemProps> = ({issue}) => {
   return (
-    <PostItemContainer>
+    <PostItemContainer to={`/${issue.number}`}>
       <PostItemHeader>
-        <strong>JavaScript data types and data structures </strong>
+        <strong>{issue.title} </strong>
         <span>Há 1 dia</span>
       </PostItemHeader>
       <span>
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript and what properties
-        they have. These can be used to build other data structures. Wherever
-        possible, comparisons with other languages are drawn. Dynamic typing
-        JavaScript is a loosely typed and dynamic language. Variables in
-        JavaScript are not directly associated with any particular value type,
-        and any variable can be assigned (and re-assigned) values of all types:
-        let foo = 42; // foo is now a number foo = 'bar'; // foo is now a string
-        foo = true; // foo is now a boolean
+        <ReactMarkdown>{issue.body}</ReactMarkdown>
       </span>
     </PostItemContainer>
   );
-}
+};
 
 export default PostItem;

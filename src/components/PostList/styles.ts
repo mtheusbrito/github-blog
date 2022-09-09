@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const PostListContainer = styled.div`
@@ -9,7 +10,7 @@ export const PostListContainer = styled.div`
 `;
 
 
-export const PostItemContainer = styled.a`
+export const PostItemContainer = styled(Link)`
   padding: 2rem;
   width: 100%;
   background: ${(props) => props.theme.basePost};

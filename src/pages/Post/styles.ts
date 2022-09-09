@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-export const PostContent = styled.div`
-padding: 2.5rem 2rem;
-  
+import ReactMarkdown from 'react-markdown';
+export const PostContent = styled(ReactMarkdown)`
+  padding: 2.5rem 2rem;
 `;
