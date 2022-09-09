@@ -41,7 +41,7 @@ export function GitHubProvider({ children }: GitHubProviderProps) {
       ...data,
       bio: data.bio.replace('\r\n', '<br>'),
     }));
-    console.log(data);
+    // console.log(data);
   }, []);
 
   const fetchIssues = useCallback(async function (query?: string) {

@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import React from 'react';
 import ReactMarkdown from 'react-markdown'
 import { PostItemContainer, PostItemHeader } from '../styles';
@@ -37,7 +39,12 @@ const PostItem: React.FC<PostItemProps> = ({issue}) => {
     <PostItemContainer to={`/${issue.number}`}>
       <PostItemHeader>
         <strong>{issue.title} </strong>
-        <span>Há 1 dia</span>
+        <span>
+          {formatDistanceToNow(new Date(issue.created_at), {
+            addSuffix: true,
+            locale: ptBR,
+          })}
+        </span>
       </PostItemHeader>
       <span>
         <ReactMarkdown>{issue.body}</ReactMarkdown>
